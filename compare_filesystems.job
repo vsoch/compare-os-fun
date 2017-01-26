@@ -1,0 +1,10 @@
+#!/bin/bash
+#SBATCH --partition normal
+#SBATCH --mem 64G
+#SBATCH --time 2-00:00:00
+#SBATCH --export ALL
+#SBATCH --output $PWD/.out/whatever.out
+#SBATCH --error $PWD/.out/whatever.err
+export TIME='%C\t%E\t%I\t%K\t%M\t%O\t%P\t%U\t%W\t%X\t%e\t%k\t%p\t%r\t%s\t%t\t%w\n'
+export TIME_LOG=$SCRATCH/os-comparison/stats.log
+/usr/bin/time -a -o $TIME_LOG python compare_filesystems.py $SCRATCH/os-comparison/data
